@@ -21,6 +21,14 @@ def main():
     #         sock.close()
 
 
+    def sentserver(ip, mes):
+        port = 4444
+        sock = socket.socket()
+        sock.connect((ip, port))
+        mes_enc = mes.encode()
+        sock.send(mes_enc)
+        sock.close()
+
     def customcmds(data):
         if data == "b'whosin'":
             print(addrbook)
@@ -31,8 +39,11 @@ def main():
         data = conn.recv(1024)
         if "GET" in repr(data):
             pass
+        elif repr(data)[0] == '~':
+            pass
         else:
             print("From ", addr[0], ": ", repr(data))
+            sentserver(addr, '~'+repr(data))
             customcmds(repr(data))
 
     while True:
