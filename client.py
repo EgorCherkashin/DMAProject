@@ -4,8 +4,8 @@ import socket
 
 def sent():
     mes = input(": ")
-    port = 4444
-    ip = "127.0.0.1"
+    port = 9999
+    ip = "192.168.1.106"
     sock = socket.socket()
     sock.connect((ip, port))
     mes_enc = mes.encode()
